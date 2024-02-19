@@ -15,28 +15,16 @@
                     <span th:text="${#dates.createNow()}"></span>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
-                        <h2 class="text-center text-dark mt-5">All Products</h2>
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="product : ${findAll}">
-                                <td th:text="${product.ProductID}"></td>
-                                <td th:text="${product.Name}"></td>
-                                <td th:text="${product.Description}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="justify-content-center">
+                    <h2>Products by Supplier</h2>
                 </div>
+                <form action="/products/productsBySupplier/{supplierId}" method="get">
+                    <div class="mb-3">
+                        <label for="supplierId" class="form-label">Supplier ID</label>
+                        <input type="number" class="form-control" id="supplierId" name="supplierId" placeholder="Enter Supplier ID">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Show Products by Supplier</button>
+                </form>
 
             </div>
         </div>

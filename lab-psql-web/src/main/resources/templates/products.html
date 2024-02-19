@@ -16,9 +16,9 @@
             </thead>
             <tbody>
             <tr th:each="product : ${findAll}">
-                <td th:text="${product.ProductID}"></td>
-                <td th:text="${product.Name}"></td>
-                <td th:text="${product.Description}"></td>
+                <td th:text="${product.getProductId()}"></td>
+                <td th:text="${product.getName()}"></td>
+                <td th:text="${product.getDescription()}"></td>
             </tr>
             </tbody>
         </table>
