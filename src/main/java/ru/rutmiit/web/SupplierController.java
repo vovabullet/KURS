@@ -1,10 +1,7 @@
 package ru.rutmiit.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.rutmiit.models.entities.Supplier;
 import ru.rutmiit.services.SupplierService;
 
@@ -22,11 +19,11 @@ public class SupplierController {
 
     @GetMapping
     public List<Supplier> getAllSuppliers() {
-        return supplierService.findAllSuppliers();
+        return supplierService.findAll();
     }
 
-    @GetMapping("/byName/{name}")
-    public List<Supplier> getSuppliersByName(@PathVariable String name) {
-        return supplierService.findSuppliersByName(name);
+    @PostMapping
+    public Supplier saveSupplier(@RequestBody Supplier supplier) {
+        return supplierService.save(supplier);
     }
 }

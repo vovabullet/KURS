@@ -6,27 +6,45 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Table(name = "ReceiptDocuments")
 public class ReceiptDocument {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long receiptId;
+    @Column(name = "ReceiptID")
+    private int receiptId;
+
+    @Column(name = "ResponsiblePerson", nullable = false, length = 255)
+    private String responsiblePerson;
+
+    @Column(name = "ReceiptDate", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date receiptDate;
 
-    @OneToMany(mappedBy = "receiptDocument", fetch = FetchType.LAZY)
-    private Set<ProductReceipt> productReceipts;
+    @ManyToOne
+    @JoinColumn(name = "WarehouseID", referencedColumnName = "WarehouseID")
+    private Warehouse warehouse;
+
+    @ManyToOne
+    @JoinColumn(name = "SupplierID", referencedColumnName = "SupplierID")
+    private Supplier supplier;
 
     // Getters and Setters
-
-    @Column(name = "receipt_id", nullable = false)
-    public Long getReceiptId() {
+    public int getReceiptId() {
         return receiptId;
     }
 
-    public void setReceiptId(Long receiptId) {
+    public void setReceiptId(int receiptId) {
         this.receiptId = receiptId;
     }
 
-    @Column(name = "receipt_date", nullable = false)
+    public String getResponsiblePerson() {
+        return responsiblePerson;
+    }
+
+    public void setResponsiblePerson(String responsiblePerson) {
+        this.responsiblePerson = responsiblePerson;
+    }
+
     public Date getReceiptDate() {
         return receiptDate;
     }
@@ -35,14 +53,19 @@ public class ReceiptDocument {
         this.receiptDate = receiptDate;
     }
 
-
-    public Set<ProductReceipt> getProductReceipts() {
-        return productReceipts;
+    public Warehouse getWarehouse() {
+        return warehouse;
     }
 
-    public void setProductReceipts(Set<ProductReceipt> productReceipts) {
-        this.productReceipts = productReceipts;
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 
+    public Supplier getSupplier() {
+        return supplier;
+    }
 
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
 }

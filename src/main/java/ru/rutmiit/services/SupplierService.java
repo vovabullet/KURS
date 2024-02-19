@@ -16,11 +16,11 @@ public class SupplierService {
         this.supplierRepository = supplierRepository;
     }
 
-    public List<Supplier> findAllSuppliers() {
+    public List<Supplier> findAll() {
         return supplierRepository.findAll();
     }
 
-    public List<Supplier> findSuppliersByName(String name) {
-        return supplierRepository.findByName(name);
+    public Supplier save(Supplier supplier) {
+        return supplierRepository.save(supplier);
     }
 }

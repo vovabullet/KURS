@@ -11,8 +11,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-
-    @Autowired
     private final ProductService productService;
 
     @Autowired
@@ -22,14 +20,17 @@ public class ProductController {
 
     @GetMapping
     public List<Product> getAllProducts() {
-        return productService.findAllProducts();
+        return productService.findAll();
     }
 
-    @GetMapping("/all")
+    @PostMapping
+    public Product saveProduct(@RequestBody Product product) {
+        return productService.save(product);
+    }
+
+    @GetMapping("/products")
     public String showAllProducts(Model model) {
-        model.addAttribute("companyInfos", productService.allProducts());
-
-        return "product-all";
+        model.addAttribute("findAll", productService.findAll());
+        return "products";
     }
-
 }

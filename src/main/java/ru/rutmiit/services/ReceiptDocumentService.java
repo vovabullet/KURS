@@ -17,11 +17,15 @@ public class ReceiptDocumentService {
         this.receiptDocumentRepository = receiptDocumentRepository;
     }
 
-    public List<ReceiptDocument> findAllReceiptDocuments() {
+    public List<ReceiptDocument> findAll() {
         return receiptDocumentRepository.findAll();
     }
 
-    public List<ReceiptDocument> findReceiptDocumentsByReceiptDate(Date receiptDate) {
-        return receiptDocumentRepository.findByReceiptDate(receiptDate);
+    public ReceiptDocument findById(Long id) {
+        return receiptDocumentRepository.findById(id).orElse(null);
+    }
+
+    public ReceiptDocument save(ReceiptDocument receiptDocument) {
+        return receiptDocumentRepository.save(receiptDocument);
     }
 }

@@ -1,9 +1,7 @@
 package ru.rutmiit.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.rutmiit.models.entities.Revaluation;
 import ru.rutmiit.services.RevaluationService;
 
@@ -22,12 +20,11 @@ public class RevaluationController {
 
     @GetMapping
     public List<Revaluation> getAllRevaluations() {
-        return revaluationService.findAllRevaluations();
+        return revaluationService.findAll();
     }
 
-    @GetMapping("/totalAmount")
-    public BigDecimal getTotalRevaluationAmount() {
-        return revaluationService.calculateTotalRevaluationAmount();
+    @PostMapping
+    public Revaluation saveRevaluation(@RequestBody Revaluation revaluation) {
+        return revaluationService.save(revaluation);
     }
-
 }

@@ -17,16 +17,11 @@ public class RevaluationService {
         this.revaluationRepository = revaluationRepository;
     }
 
-    public List<Revaluation> findAllRevaluations() {
+    public List<Revaluation> findAll() {
         return revaluationRepository.findAll();
     }
 
-    public BigDecimal calculateTotalRevaluationAmount() {
-        List<Revaluation> revaluations = findAllRevaluations();
-        BigDecimal totalAmount = BigDecimal.ZERO;
-        for (Revaluation revaluation : revaluations) {
-            totalAmount = totalAmount.add(revaluation.getAmount());
-        }
-        return totalAmount;
+    public Revaluation save(Revaluation revaluation) {
+        return revaluationRepository.save(revaluation);
     }
 }

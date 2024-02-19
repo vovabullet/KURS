@@ -13,20 +13,17 @@ import java.util.stream.Collectors;
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
-    private final ModelMapper mapper;
 
     @Autowired
-    public ProductService(ProductRepository productRepository, ModelMapper mapper) {
+    public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.mapper = mapper;
     }
 
-    public List<Product> findAllProducts() {
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
 
-    public List<ShowProductInfoDto> allProducts() {
-        return productRepository.findAll().stream().map(company -> mapper.map(company, ShowProductInfoDto.class))
-                .collect(Collectors.toList());
+    public Product save(Product product) {
+        return productRepository.save(product);
     }
 }

@@ -1,15 +1,10 @@
 package ru.rutmiit.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.rutmiit.models.entities.ReceiptDocument;
 import ru.rutmiit.services.ReceiptDocumentService;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -24,11 +19,16 @@ public class ReceiptDocumentController {
 
     @GetMapping
     public List<ReceiptDocument> getAllReceiptDocuments() {
-        return receiptDocumentService.findAllReceiptDocuments();
+        return receiptDocumentService.findAll();
     }
 
-    @GetMapping("/byDate/{receiptDate}")
-    public List<ReceiptDocument> getReceiptDocumentsByReceiptDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date receiptDate) {
-        return receiptDocumentService.findReceiptDocumentsByReceiptDate(receiptDate);
+    @GetMapping("/{id}")
+    public ReceiptDocument getReceiptDocumentById(@PathVariable Long id) {
+        return receiptDocumentService.findById(id);
+    }
+
+    @PostMapping
+    public ReceiptDocument saveReceiptDocument(@RequestBody ReceiptDocument receiptDocument) {
+        return receiptDocumentService.save(receiptDocument);
     }
 }

@@ -1,27 +1,28 @@
 package ru.rutmiit.models.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Suppliers")
 public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "SupplierID")
+    private int supplierId;
+
+    @Column(name = "Name", nullable = false, length = 255)
     private String name;
-    private String address;
-    private String phoneNumber;
 
-    // Конструкторы, геттеры и сеттеры
+    @Column(name = "ContactInfo", nullable = false, length = 255)
+    private String contactInfo;
 
-    public Long getId() {
-        return id;
+    // Getters and Setters
+    public int getSupplierId() {
+        return supplierId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
     }
 
     public String getName() {
@@ -32,19 +33,11 @@ public class Supplier {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getContactInfo() {
+        return contactInfo;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setContactInfo(String contactInfo) {
+        this.contactInfo = contactInfo;
     }
 }

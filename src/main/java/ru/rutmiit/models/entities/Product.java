@@ -1,46 +1,43 @@
 package ru.rutmiit.models.entities;
 
 import jakarta.persistence.*;
-import java.util.List;
+
 @Entity
+@Table(name = "Products")
 public class Product {
-
-    private Long product_id;
-    private String productName;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "product_id", nullable = false)
-    public Long getProduct_id() {
-        return product_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ProductID")
+    private int productId;
+
+    @Column(name = "Name", nullable = false, length = 255)
+    private String name;
+
+    @Column(name = "Description", columnDefinition = "TEXT")
+    private String description;
+
+    // Getters and Setters
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(Long product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
-    @Column(columnDefinition = "product_name", nullable = false)
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-
-
-
-    @OneToMany(mappedBy = "product")
-    private List<ProductReceipt> productReceipt;
-
-    public List<ProductReceipt> getProductReceipts() {
-        return productReceipt;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProductReceipts(List<ProductReceipt> productReceipts) {
-        this.productReceipt = productReceipts;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
-
 }

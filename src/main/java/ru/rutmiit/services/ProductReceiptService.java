@@ -16,12 +16,16 @@ public class ProductReceiptService {
         this.productReceiptRepository = productReceiptRepository;
     }
 
-    public List<ProductReceipt> findAllProductReceipts() {
+    public List<ProductReceipt> findAll() {
         return productReceiptRepository.findAll();
     }
 
-    public List<ProductReceipt> findProductReceiptsByProductId(Long productId) {
-        return productReceiptRepository.findByProductId(productId);
+    public ProductReceipt findById(Long id) {
+        return productReceiptRepository.findById(id).orElse(null);
+    }
+
+    public ProductReceipt save(ProductReceipt productReceipt) {
+        return productReceiptRepository.save(productReceipt);
     }
 
 }
